@@ -5,9 +5,9 @@
 #include "mmu.h"
 #include "x86.h"
 #include "semaphore.h"
+#include "mmap.h"
 #include "proc.h"
 #include "spinlock.h"
-#include "mmap.h"
 
 struct mlf{  // structure that represents MLF
   struct proc *first;
