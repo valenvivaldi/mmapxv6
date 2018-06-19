@@ -1,7 +1,7 @@
 
 struct mmap{
-     struct file * fd;
-     unint va;
+     struct file * pfile;
+     uint va;
      uint sz;
      ushort mode;
 }

@@ -163,7 +163,7 @@ fileseek(struct file *f, uint newoffset)
   if(f->readable == 0){
     return -1;
   }
-
+  if(f->writable == 0)
+    return -1;
   f->off = newoffset;
-  //panic("fileread");
 }
