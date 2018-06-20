@@ -107,6 +107,7 @@ extern int sys_semget(void);
 extern int sys_semfree(void);
 extern int sys_semdown(void);
 extern int sys_semup(void);
+extern int sys_mmap(void);
 
 static int (*syscalls[])(void) = {
 [SYS_fork]    sys_fork,
@@ -136,7 +137,8 @@ static int (*syscalls[])(void) = {
 [SYS_semget]   sys_semget,
 [SYS_semfree]   sys_semfree,
 [SYS_semdown]   sys_semdown,
-[SYS_semup]   sys_semup
+[SYS_semup]   sys_semup,
+[SYS_mmap]   sys_mmap
 };
 
 void

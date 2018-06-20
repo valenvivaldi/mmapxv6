@@ -27,3 +27,4 @@
 #define SYS_semdown  26
 #define SYS_semup  27
 #define SYS_seek   28
+#define SYS_mmap   29

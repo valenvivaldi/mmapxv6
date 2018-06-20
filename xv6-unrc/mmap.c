@@ -30,10 +30,11 @@ mmap(int fd, int mode, char ** addr )
     proc->ommap[indexommap].mode = mode;
     proc->ommap[indexommap].sz = fileformap->ip->size;
 
-    allocuvm2(proc->pgdir,proc->sz,proc->sz+fileformap->ip->size)
+    allocuvm2(proc->pgdir,proc->sz,proc->sz+fileformap->ip->size);
     proc->ommap[indexommap].va=proc->sz;
     proc->sz =proc->sz+fileformap->ip->size;
 
+    //*adrr = dir de memoria virtual donde empieza el archivo
     *addr = proc->ommap[indexommap].va;
 
     return 0;
@@ -44,7 +45,6 @@ mmap(int fd, int mode, char ** addr )
 
 
 
-//*adrr = dir de memoria virtual donde empieza el archivo
 
 }
 

@@ -4,4 +4,4 @@ struct mmap{
      uint va;
      uint sz;
      ushort mode;
-}
+};

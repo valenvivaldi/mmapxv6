@@ -158,12 +158,11 @@ filewrite(struct file *f, char *addr, int n)
 int
 fileseek(struct file *f, uint newoffset)
 {
-  int r;
-
   if(f->readable == 0){
     return -1;
   }
   if(f->writable == 0)
     return -1;
   f->off = newoffset;
+  return 0;
 }

@@ -88,6 +88,9 @@ void            log_write(struct buf*);
 void            begin_op();
 void            end_op();
 
+//mmap.c
+int             mmap(int,int,char **);
+
 // mp.c
 extern int      ismp;
 int             mpbcpu(void);
@@ -190,6 +193,8 @@ void            switchuvm(struct proc*);
 void            switchkvm(void);
 int             copyout(pde_t*, uint, void*, uint);
 void            clearpteu(pde_t *pgdir, char *uva);
+
+
 
 // number of elements in fixed-size array
 #define NELEM(x) (sizeof(x)/sizeof((x)[0]))

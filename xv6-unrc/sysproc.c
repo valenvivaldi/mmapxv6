@@ -152,3 +152,15 @@ sys_semup(void)
     return -1;
   return semup(id);
 }
+
+int
+sys_mmap(void)
+{
+  int fd;
+  int mode;
+  char ** addr;
+  if(argint(0, &fd)<0 || argint(1, &mode)<0 ||argptr(2,&addr,sizeof(addr))<0){ //PREGUNTAR
+    return -1;
+  }
+  return mmap(fd,mode,addr);
+}
