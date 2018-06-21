@@ -33,7 +33,7 @@ Copyright 2006-2014 Frans Kaashoek, Robert Morris, and Russ Cox.
 ERROR REPORTS
 
 If you spot errors or have suggestions for improvement, please send
-email to Frans Kaashoek and Robert Morris (kaashoek,rtm@csail.mit.edu). 
+email to Frans Kaashoek and Robert Morris (kaashoek,rtm@csail.mit.edu).
 
 BUILDING AND RUNNING XV6
 
@@ -47,3 +47,136 @@ To run xv6, install the QEMU PC simulators.  To run in QEMU, run "make qemu".
 
 To create a typeset version of the code, run "make xv6.pdf".  This
 requires the "mpage" utility.  See http://www.mesa.nl/pub/mpage/.
+
+Un archivo de texto simple, texto sencillo o texto sin formato (también llamado texto llano o texto simple; en inglés «plain text»), es un archivo informático que contiene únicamente texto formado solo por caracteres que son legibles por humanos, careciendo de cualquier tipo de formato tipográfico.1​
+
+Estos archivos están compuestos de bytes que representan caracteres ordinarios como letras, números y signos de puntuación (incluyendo espacios en blanco), también incluye algunos pocos caracteres de control como tabulaciones, saltos de línea y retornos de carro. Estos caracteres se pueden codificar de distintos modos dependiendo de la lengua usada. Algunos de los sistemas de codificación más usados son: ASCII, ISO-8859-1 o Latín-1 y UTF-8.
+
+Los archivos de texto plano carecen de información destinada a generar formatos (negritas, subrayado, cursivas, tamaño, etc.) y tipos de letra (por ejemplo, Arial, Times, Courier, etc.). Esta simplicidad permite que una gran variedad de programas pueda leer y editar ese contenido. Las aplicaciones destinadas a la escritura y modificación de archivos de texto se llaman editores de texto. Cada texto tiene un peso diferente porque tiene una codificación distinta.
+
+Los documentos de texto plano son legibles por humanos -a diferencia de los archivos binarios- , son usados en ocasiones por ciertos programas como una forma de almacenamiento de los datos. La ventaja que este tipo de ficheros ofrece, además de la interoperabilidad ya que es un formato universal, es que un usuario puede acceder a los datos y modificar las variables para personalizar el programa.
+
+Adicionalmente, cuando ocurre algún tipo de corrupción de datos, es más fácil para una persona arreglar problemas en un archivo de texto que en uno binario. Algunos formatos de texto (como XML) tienen mecanismos incluidos para especificar la codificación del documento, pero la gran mayoría de formatos no lo tiene. Como contrapartida, cualquier usuario podría leer y modificar el valor de las variables a su antojo, o aleatoriamente o por equivocación, siendo impredecibles los efectos sobre el programa.
+
+Un inconveniente de los archivos de texto es que no hay forma segura de saber a priori que codificación se utilizó para guardarlo. Un programa editor de texto puede grabar un archivo en UTF-8, pero un compilador puede esperar un formato ISO-8859; al tratar de compilar el archivo generará errores en el programa. El problema es aún más complejo en el caso de ficheros transmitidos a través de redes informáticas, en las que una identificación errónea de la codificación de los archivos de texto puede dar lugar a multitud de errores.
+
+
+Convenciones de nombres
+En sistemas Windows
+La costumbre ha hecho que los archivos de texto se nombren con la extensión .txt, aunque pueden tener cualquier otra a capricho del usuario (son válidas y habituales: .inf, .80, .dat, etc.)[cita requerida]
+
+Es recomendable no usar para un archivo de texto llano extensiones que, estando muy difundidas y siendo muy conocidas, pueden confundir tanto al usuario como al propio sistema operativo, como por ejemplo .xls, .doc, .ppt, .wav, .gif o .jpg, aunque no hay ningún impedimento real si se quieren utilizar.
+
+En sistemas Unix y GNU/Linux
+En sistemas Unix y GNU/Linux las convenciones de nombres de archivos son más relajadas. La extensión .txt se ha hecho popular en los últimos tiempos, pero habitualmente el contenido del archivo se determina con programas que examinan los primeros bytes, como por ejemplo el comando "file".
+
+
+Un archivo de texto simple, texto sencillo o texto sin formato (también llamado texto llano o texto simple; en inglés «plain text»), es un archivo informático que contiene únicamente texto formado solo por caracteres que son legibles por humanos, careciendo de cualquier tipo de formato tipográfico.1​
+
+Estos archivos están compuestos de bytes que representan caracteres ordinarios como letras, números y signos de puntuación (incluyendo espacios en blanco), también incluye algunos pocos caracteres de control como tabulaciones, saltos de línea y retornos de carro. Estos caracteres se pueden codificar de distintos modos dependiendo de la lengua usada. Algunos de los sistemas de codificación más usados son: ASCII, ISO-8859-1 o Latín-1 y UTF-8.
+
+Los archivos de texto plano carecen de información destinada a generar formatos (negritas, subrayado, cursivas, tamaño, etc.) y tipos de letra (por ejemplo, Arial, Times, Courier, etc.). Esta simplicidad permite que una gran variedad de programas pueda leer y editar ese contenido. Las aplicaciones destinadas a la escritura y modificación de archivos de texto se llaman editores de texto. Cada texto tiene un peso diferente porque tiene una codificación distinta.
+
+Los documentos de texto plano son legibles por humanos -a diferencia de los archivos binarios- , son usados en ocasiones por ciertos programas como una forma de almacenamiento de los datos. La ventaja que este tipo de ficheros ofrece, además de la interoperabilidad ya que es un formato universal, es que un usuario puede acceder a los datos y modificar las variables para personalizar el programa.
+
+Adicionalmente, cuando ocurre algún tipo de corrupción de datos, es más fácil para una persona arreglar problemas en un archivo de texto que en uno binario. Algunos formatos de texto (como XML) tienen mecanismos incluidos para especificar la codificación del documento, pero la gran mayoría de formatos no lo tiene. Como contrapartida, cualquier usuario podría leer y modificar el valor de las variables a su antojo, o aleatoriamente o por equivocación, siendo impredecibles los efectos sobre el programa.
+
+Un inconveniente de los archivos de texto es que no hay forma segura de saber a priori que codificación se utilizó para guardarlo. Un programa editor de texto puede grabar un archivo en UTF-8, pero un compilador puede esperar un formato ISO-8859; al tratar de compilar el archivo generará errores en el programa. El problema es aún más complejo en el caso de ficheros transmitidos a través de redes informáticas, en las que una identificación errónea de la codificación de los archivos de texto puede dar lugar a multitud de errores.
+
+
+Convenciones de nombres
+En sistemas Windows
+La costumbre ha hecho que los archivos de texto se nombren con la extensión .txt, aunque pueden tener cualquier otra a capricho del usuario (son válidas y habituales: .inf, .80, .dat, etc.)[cita requerida]
+
+Es recomendable no usar para un archivo de texto llano extensiones que, estando muy difundidas y siendo muy conocidas, pueden confundir tanto al usuario como al propio sistema operativo, como por ejemplo .xls, .doc, .ppt, .wav, .gif o .jpg, aunque no hay ningún impedimento real si se quieren utilizar.
+
+En sistemas Unix y GNU/Linux
+En sistemas Unix y GNU/Linux las convenciones de nombres de archivos son más relajadas. La extensión .txt se ha hecho popular en los últimos tiempos, pero habitualmente el contenido del archivo se determina con programas que examinan los primeros bytes, como por ejemplo el comando "file".
+
+Un archivo de texto simple, texto sencillo o texto sin formato (también llamado texto llano o texto simple; en inglés «plain text»), es un archivo informático que contiene únicamente texto formado solo por caracteres que son legibles por humanos, careciendo de cualquier tipo de formato tipográfico.1​
+
+Estos archivos están compuestos de bytes que representan caracteres ordinarios como letras, números y signos de puntuación (incluyendo espacios en blanco), también incluye algunos pocos caracteres de control como tabulaciones, saltos de línea y retornos de carro. Estos caracteres se pueden codificar de distintos modos dependiendo de la lengua usada. Algunos de los sistemas de codificación más usados son: ASCII, ISO-8859-1 o Latín-1 y UTF-8.
+
+Los archivos de texto plano carecen de información destinada a generar formatos (negritas, subrayado, cursivas, tamaño, etc.) y tipos de letra (por ejemplo, Arial, Times, Courier, etc.). Esta simplicidad permite que una gran variedad de programas pueda leer y editar ese contenido. Las aplicaciones destinadas a la escritura y modificación de archivos de texto se llaman editores de texto. Cada texto tiene un peso diferente porque tiene una codificación distinta.
+
+Los documentos de texto plano son legibles por humanos -a diferencia de los archivos binarios- , son usados en ocasiones por ciertos programas como una forma de almacenamiento de los datos. La ventaja que este tipo de ficheros ofrece, además de la interoperabilidad ya que es un formato universal, es que un usuario puede acceder a los datos y modificar las variables para personalizar el programa.
+
+Adicionalmente, cuando ocurre algún tipo de corrupción de datos, es más fácil para una persona arreglar problemas en un archivo de texto que en uno binario. Algunos formatos de texto (como XML) tienen mecanismos incluidos para especificar la codificación del documento, pero la gran mayoría de formatos no lo tiene. Como contrapartida, cualquier usuario podría leer y modificar el valor de las variables a su antojo, o aleatoriamente o por equivocación, siendo impredecibles los efectos sobre el programa.
+
+Un inconveniente de los archivos de texto es que no hay forma segura de saber a priori que codificación se utilizó para guardarlo. Un programa editor de texto puede grabar un archivo en UTF-8, pero un compilador puede esperar un formato ISO-8859; al tratar de compilar el archivo generará errores en el programa. El problema es aún más complejo en el caso de ficheros transmitidos a través de redes informáticas, en las que una identificación errónea de la codificación de los archivos de texto puede dar lugar a multitud de errores.
+
+
+Convenciones de nombres
+En sistemas Windows
+La costumbre ha hecho que los archivos de texto se nombren con la extensión .txt, aunque pueden tener cualquier otra a capricho del usuario (son válidas y habituales: .inf, .80, .dat, etc.)[cita requerida]
+
+Es recomendable no usar para un archivo de texto llano extensiones que, estando muy difundidas y siendo muy conocidas, pueden confundir tanto al usuario como al propio sistema operativo, como por ejemplo .xls, .doc, .ppt, .wav, .gif o .jpg, aunque no hay ningún impedimento real si se quieren utilizar.
+
+En sistemas Unix y GNU/Linux
+En sistemas Unix y GNU/Linux las convenciones de nombres de archivos son más relajadas. La extensión .txt se ha hecho popular en los últimos tiempos, pero habitualmente el contenido del archivo se determina con programas que examinan los primeros bytes, como por ejemplo el comando "file".
+
+Un archivo de texto simple, texto sencillo o texto sin formato (también llamado texto llano o texto simple; en inglés «plain text»), es un archivo informático que contiene únicamente texto formado solo por caracteres que son legibles por humanos, careciendo de cualquier tipo de formato tipográfico.1​
+
+Estos archivos están compuestos de bytes que representan caracteres ordinarios como letras, números y signos de puntuación (incluyendo espacios en blanco), también incluye algunos pocos caracteres de control como tabulaciones, saltos de línea y retornos de carro. Estos caracteres se pueden codificar de distintos modos dependiendo de la lengua usada. Algunos de los sistemas de codificación más usados son: ASCII, ISO-8859-1 o Latín-1 y UTF-8.
+
+Los archivos de texto plano carecen de información destinada a generar formatos (negritas, subrayado, cursivas, tamaño, etc.) y tipos de letra (por ejemplo, Arial, Times, Courier, etc.). Esta simplicidad permite que una gran variedad de programas pueda leer y editar ese contenido. Las aplicaciones destinadas a la escritura y modificación de archivos de texto se llaman editores de texto. Cada texto tiene un peso diferente porque tiene una codificación distinta.
+
+Los documentos de texto plano son legibles por humanos -a diferencia de los archivos binarios- , son usados en ocasiones por ciertos programas como una forma de almacenamiento de los datos. La ventaja que este tipo de ficheros ofrece, además de la interoperabilidad ya que es un formato universal, es que un usuario puede acceder a los datos y modificar las variables para personalizar el programa.
+
+Adicionalmente, cuando ocurre algún tipo de corrupción de datos, es más fácil para una persona arreglar problemas en un archivo de texto que en uno binario. Algunos formatos de texto (como XML) tienen mecanismos incluidos para especificar la codificación del documento, pero la gran mayoría de formatos no lo tiene. Como contrapartida, cualquier usuario podría leer y modificar el valor de las variables a su antojo, o aleatoriamente o por equivocación, siendo impredecibles los efectos sobre el programa.
+
+Un inconveniente de los archivos de texto es que no hay forma segura de saber a priori que codificación se utilizó para guardarlo. Un programa editor de texto puede grabar un archivo en UTF-8, pero un compilador puede esperar un formato ISO-8859; al tratar de compilar el archivo generará errores en el programa. El problema es aún más complejo en el caso de ficheros transmitidos a través de redes informáticas, en las que una identificación errónea de la codificación de los archivos de texto puede dar lugar a multitud de errores.
+
+
+Convenciones de nombres
+En sistemas Windows
+La costumbre ha hecho que los archivos de texto se nombren con la extensión .txt, aunque pueden tener cualquier otra a capricho del usuario (son válidas y habituales: .inf, .80, .dat, etc.)[cita requerida]
+
+Es recomendable no usar para un archivo de texto llano extensiones que, estando muy difundidas y siendo muy conocidas, pueden confundir tanto al usuario como al propio sistema operativo, como por ejemplo .xls, .doc, .ppt, .wav, .gif o .jpg, aunque no hay ningún impedimento real si se quieren utilizar.
+
+En sistemas Unix y GNU/Linux
+En sistemas Unix y GNU/Linux las convenciones de nombres de archivos son más relajadas. La extensión .txt se ha hecho popular en los últimos tiempos, pero habitualmente el contenido del archivo se determina con programas que examinan los primeros bytes, como por ejemplo el comando "file".
+
+Un archivo de texto simple, texto sencillo o texto sin formato (también llamado texto llano o texto simple; en inglés «plain text»), es un archivo informático que contiene únicamente texto formado solo por caracteres que son legibles por humanos, careciendo de cualquier tipo de formato tipográfico.1​
+
+Estos archivos están compuestos de bytes que representan caracteres ordinarios como letras, números y signos de puntuación (incluyendo espacios en blanco), también incluye algunos pocos caracteres de control como tabulaciones, saltos de línea y retornos de carro. Estos caracteres se pueden codificar de distintos modos dependiendo de la lengua usada. Algunos de los sistemas de codificación más usados son: ASCII, ISO-8859-1 o Latín-1 y UTF-8.
+
+Los archivos de texto plano carecen de información destinada a generar formatos (negritas, subrayado, cursivas, tamaño, etc.) y tipos de letra (por ejemplo, Arial, Times, Courier, etc.). Esta simplicidad permite que una gran variedad de programas pueda leer y editar ese contenido. Las aplicaciones destinadas a la escritura y modificación de archivos de texto se llaman editores de texto. Cada texto tiene un peso diferente porque tiene una codificación distinta.
+
+Los documentos de texto plano son legibles por humanos -a diferencia de los archivos binarios- , son usados en ocasiones por ciertos programas como una forma de almacenamiento de los datos. La ventaja que este tipo de ficheros ofrece, además de la interoperabilidad ya que es un formato universal, es que un usuario puede acceder a los datos y modificar las variables para personalizar el programa.
+
+Adicionalmente, cuando ocurre algún tipo de corrupción de datos, es más fácil para una persona arreglar problemas en un archivo de texto que en uno binario. Algunos formatos de texto (como XML) tienen mecanismos incluidos para especificar la codificación del documento, pero la gran mayoría de formatos no lo tiene. Como contrapartida, cualquier usuario podría leer y modificar el valor de las variables a su antojo, o aleatoriamente o por equivocación, siendo impredecibles los efectos sobre el programa.
+
+Un inconveniente de los archivos de texto es que no hay forma segura de saber a priori que codificación se utilizó para guardarlo. Un programa editor de texto puede grabar un archivo en UTF-8, pero un compilador puede esperar un formato ISO-8859; al tratar de compilar el archivo generará errores en el programa. El problema es aún más complejo en el caso de ficheros transmitidos a través de redes informáticas, en las que una identificación errónea de la codificación de los archivos de texto puede dar lugar a multitud de errores.
+
+
+Convenciones de nombres
+En sistemas Windows
+La costumbre ha hecho que los archivos de texto se nombren con la extensión .txt, aunque pueden tener cualquier otra a capricho del usuario (son válidas y habituales: .inf, .80, .dat, etc.)[cita requerida]
+
+Es recomendable no usar para un archivo de texto llano extensiones que, estando muy difundidas y siendo muy conocidas, pueden confundir tanto al usuario como al propio sistema operativo, como por ejemplo .xls, .doc, .ppt, .wav, .gif o .jpg, aunque no hay ningún impedimento real si se quieren utilizar.
+
+En sistemas Unix y GNU/Linux
+En sistemas Unix y GNU/Linux las convenciones de nombres de archivos son más relajadas. La extensión .txt se ha hecho popular en los últimos tiempos, pero habitualmente el contenido del archivo se determina con programas que examinan los primeros bytes, como por ejemplo el comando "file".
+
+Un archivo de texto simple, texto sencillo o texto sin formato (también llamado texto llano o texto simple; en inglés «plain text»), es un archivo informático que contiene únicamente texto formado solo por caracteres que son legibles por humanos, careciendo de cualquier tipo de formato tipográfico.1​
+
+Estos archivos están compuestos de bytes que representan caracteres ordinarios como letras, números y signos de puntuación (incluyendo espacios en blanco), también incluye algunos pocos caracteres de control como tabulaciones, saltos de línea y retornos de carro. Estos caracteres se pueden codificar de distintos modos dependiendo de la lengua usada. Algunos de los sistemas de codificación más usados son: ASCII, ISO-8859-1 o Latín-1 y UTF-8.
+
+Los archivos de texto plano carecen de información destinada a generar formatos (negritas, subrayado, cursivas, tamaño, etc.) y tipos de letra (por ejemplo, Arial, Times, Courier, etc.). Esta simplicidad permite que una gran variedad de programas pueda leer y editar ese contenido. Las aplicaciones destinadas a la escritura y modificación de archivos de texto se llaman editores de texto. Cada texto tiene un peso diferente porque tiene una codificación distinta.
+
+Los documentos de texto plano son legibles por humanos -a diferencia de los archivos binarios- , son usados en ocasiones por ciertos programas como una forma de almacenamiento de los datos. La ventaja que este tipo de ficheros ofrece, además de la interoperabilidad ya que es un formato universal, es que un usuario puede acceder a los datos y modificar las variables para personalizar el programa.
+
+Adicionalmente, cuando ocurre algún tipo de corrupción de datos, es más fácil para una persona arreglar problemas en un archivo de texto que en uno binario. Algunos formatos de texto (como XML) tienen mecanismos incluidos para especificar la codificación del documento, pero la gran mayoría de formatos no lo tiene. Como contrapartida, cualquier usuario podría leer y modificar el valor de las variables a su antojo, o aleatoriamente o por equivocación, siendo impredecibles los efectos sobre el programa.
+
+Un inconveniente de los archivos de texto es que no hay forma segura de saber a priori que codificación se utilizó para guardarlo. Un programa editor de texto puede grabar un archivo en UTF-8, pero un compilador puede esperar un formato ISO-8859; al tratar de compilar el archivo generará errores en el programa. El problema es aún más complejo en el caso de ficheros transmitidos a través de redes informáticas, en las que una identificación errónea de la codificación de los archivos de texto puede dar lugar a multitud de errores.
+
+
+Convenciones de nombres
+En sistemas Windows
+La costumbre ha hecho que los archivos de texto se nombren con la extensión .txt, aunque pueden tener cualquier otra a capricho del usuario (son válidas y habituales: .inf, .80, .dat, etc.)[cita requerida]
+
+Es recomendable no usar para un archivo de texto llano extensiones que, estando muy difundidas y siendo muy conocidas, pueden confundir tanto al usuario como al propio sistema operativo, como por ejemplo .xls, .doc, .ppt, .wav, .gif o .jpg, aunque no hay ningún impedimento real si se quieren utilizar.
+
+En sistemas Unix y GNU/Linux
+En sistemas Unix y GNU/Linux las convenciones de nombres de archivos son más relajadas. La extensión .txt se ha hecho popular en los últimos tiempos, pero habitualmente el contenido del archivo se determina con programas que examinan los primeros bytes, como por ejemplo el comando "file".

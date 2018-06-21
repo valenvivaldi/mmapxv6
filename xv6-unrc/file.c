@@ -163,6 +163,13 @@ fileseek(struct file *f, uint newoffset)
   }
   if(f->writable == 0)
     return -1;
+  if(newoffset<0)
+    return -1;
+  if(newoffset > f->ip->size){
+      f->off = f->ip->size;
+      return 0;
+  }
+
   f->off = newoffset;
   return 0;
 }

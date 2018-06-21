@@ -5,6 +5,7 @@
 #include "param.h"
 #include "memlayout.h"
 #include "mmu.h"
+#include "mmap.h"
 #include "proc.h"
 
 int
@@ -155,12 +156,14 @@ sys_semup(void)
 
 int
 sys_mmap(void)
-{
+{                                                     //(2,&addr,sizeof(addr))<0
   int fd;
   int mode;
-  char ** addr;
-  if(argint(0, &fd)<0 || argint(1, &mode)<0 ||argptr(2,&addr,sizeof(addr))<0){ //PREGUNTAR
+  int addr;
+
+  if(argint(0, &fd)<0 || argint(1, &mode)<0 ||argint(2,&addr)<0){ //PREGUNTAR
     return -1;
   }
-  return mmap(fd,mode,addr);
+  cprintf("%x",addr);
+  return mmap(fd,mode,(char**)addr);
 }

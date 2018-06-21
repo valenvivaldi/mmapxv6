@@ -175,6 +175,7 @@ UPROGS=\
 	_ln\
 	_ls\
 	_mkdir\
+	_mmaptest\
 	_pagestest\
 	_prioritytest\
 	_rm\
@@ -185,8 +186,8 @@ UPROGS=\
 	_wc\
 	_zombie\
 
-fs.img: mkfs README $(UPROGS)
-	./mkfs fs.img README $(UPROGS)
+fs.img: mkfs README  $(UPROGS)
+	./mkfs fs.img README  $(UPROGS)
 
 -include *.d
 

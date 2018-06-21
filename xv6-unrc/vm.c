@@ -4,6 +4,7 @@
 #include "x86.h"
 #include "memlayout.h"
 #include "mmu.h"
+#include "mmap.h"
 #include "proc.h"
 #include "elf.h"
 
@@ -385,52 +386,3 @@ copyout(pde_t *pgdir, uint va, void *p, uint len)
 // Blank page.
 //PAGEBREAK!
 // Blank page.
-
-
-
-
-
-static int
-mappages2(pde_t *pgdir, void *va, uint size, uint pa, int perm)
-{
-  char *a, *last;
-  pte_t *pte;
-
-  a = (char*)PGROUNDDOWN((uint)va);
-  last = (char*)PGROUNDDOWN(((uint)va) + size - 1);
-  for(;;){
-    if((pte = walkpgdir(pgdir, a, 1)) == 0)
-    return -1;
-
-    *pte = pa | perm;
-    if(a == last)
-    break;
-    a += PGSIZE;
-    pa += PGSIZE;
-  }
-  return 0;
-}
-
-int
-allocuvm2(pde_t *pgdir, uint oldsz, uint newsz)
-{
-  char *mem;
-  uint a;
-  if(newsz >= KERNBASE)
-    return 0;
-  if(newsz < oldsz)
-    return oldsz;
-
-  a = PGROUNDUP(oldsz);
-  for(; a < newsz; a += PGSIZE){
-    mem = kalloc();
-    if(mem == 0){
-      cprintf("allocuvm out of memory\n");
-      deallocuvm(pgdir, newsz, oldsz);
-      return 0;
-    }
-    memset(mem, 0, PGSIZE);
-    mappages2(pgdir, (char*)a, PGSIZE, v2p(mem), PTE_W|PTE_U);
-  }
-  return newsz;
-}

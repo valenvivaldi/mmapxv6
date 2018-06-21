@@ -9,6 +9,7 @@
 #include "param.h"
 #include "stat.h"
 #include "mmu.h"
+#include "mmap.h"
 #include "proc.h"
 #include "fs.h"
 #include "file.h"
@@ -448,7 +449,7 @@ sys_seek(void)
   struct file *f;
   int n;
 
-  if(argfd(0, 0, &f) < 0 || argint(2, &n) < 0 )
+  if(argfd(0, 0, &f) < 0 || argint(1, &n) < 0 )
     return -1;
   return fileseek(f, n);
 }

@@ -3,6 +3,7 @@
 #include "param.h"
 #include "memlayout.h"
 #include "mmu.h"
+#include "mmap.h"
 #include "proc.h"
 #include "x86.h"
 #include "traps.h"
@@ -31,6 +32,25 @@ idtinit(void)
 {
   lidt(idt, sizeof(idt));
 }
+
+int
+mmapin(uint cr2)
+{
+  int index;
+
+  for(index=0;index<MAXMAPPEDFILES;index++){
+    int va;
+    int sz;
+    va = proc->ommap[index].va;
+    sz = proc->ommap[index].sz;
+
+    if(cr2>=va && cr2<va+sz)
+      return index;
+  }
+  return -1;
+}
+
+
 
 //PAGEBREAK: 41
 void
@@ -84,6 +104,7 @@ trap(struct trapframe *tf)
     if(proc && tf->trapno == T_PGFLT){
       uint cr2=rcr2();
       uint basepgaddr;
+      int mmapid;
 
 
       //  Verify if you wanted to access a correct address but not assigned.
@@ -95,6 +116,20 @@ trap(struct trapframe *tf)
           panic("trap alloc stack");
         break;
       }
+
+      if ( (mmapid = mmapin(cr2)) >= 0 ) {
+        int offset;
+
+        // in ashared memory region
+        basepgaddr = PGROUNDDOWN(cr2);
+        if(allocuvm(proc->pgdir, basepgaddr, basepgaddr + PGSIZE) == 0)
+          panic("trap alloc stack");
+        offset = basepgaddr - proc->ommap[mmapid].va;
+        fileseek(proc->ommap[mmapid].pfile, offset);
+        fileread(proc->ommap[mmapid].pfile, basepgaddr, PGSIZE);
+        break;
+      }
+
     }
 
     if(proc == 0 || (tf->cs&3) == 0){
