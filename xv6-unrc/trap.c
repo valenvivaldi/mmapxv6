@@ -119,14 +119,14 @@ trap(struct trapframe *tf)
 
       if ( (mmapid = mmapin(cr2)) >= 0 ) {
         int offset;
-
+        cprintf("SE QUIERE LEER UNA PAGINA DEL ARCHIVO NO ALOCADA!\n");
         // in ashared memory region
         basepgaddr = PGROUNDDOWN(cr2);
         if(allocuvm(proc->pgdir, basepgaddr, basepgaddr + PGSIZE) == 0)
           panic("trap alloc stack");
         offset = basepgaddr - proc->ommap[mmapid].va;
         fileseek(proc->ommap[mmapid].pfile, offset);
-        fileread(proc->ommap[mmapid].pfile, basepgaddr, PGSIZE);
+        fileread(proc->ommap[mmapid].pfile, (char *)basepgaddr, PGSIZE);
         break;
       }
 

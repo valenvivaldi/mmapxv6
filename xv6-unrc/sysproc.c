@@ -164,6 +164,6 @@ sys_mmap(void)
   if(argint(0, &fd)<0 || argint(1, &mode)<0 ||argint(2,&addr)<0){ //PREGUNTAR
     return -1;
   }
-  cprintf("%x",addr);
+  //cprintf("%x",addr);
   return mmap(fd,mode,(char**)addr);
 }

@@ -14,10 +14,13 @@ void
 mmaptest(void)
 {
   int fd;
+  int i;
   char* buff;
-  fd=open("text.txt",O_RDWR);
+  fd=open("README",O_RDWR);
   mmap(fd,O_RDWR,&buff);
-
+  for(i=0;i<10000;i++){
+    printf(1,"%c",buff[i] );
+  }
   printf(1, "mmaptest ok\n");
 }
 
