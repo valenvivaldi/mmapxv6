@@ -3,6 +3,7 @@
 // SMP machines use the local APIC timer.
 
 #include "types.h"
+#include "mmu.h"
 #include "defs.h"
 #include "traps.h"
 #include "x86.h"

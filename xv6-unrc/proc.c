@@ -1,8 +1,8 @@
 #include "types.h"
+#include "mmu.h"
 #include "defs.h"
 #include "param.h"
 #include "memlayout.h"
-#include "mmu.h"
 #include "x86.h"
 #include "semaphore.h"
 #include "mmap.h"
@@ -237,9 +237,18 @@ fork(void)
       np->ofile[i] = filedup(proc->ofile[i]);
 
   //duplicate semaphore a new process
-  for(i = 0; i < MAXPROCSEM; i++)
+  for(i = 0; i < MAXPROCSEM; i++){
     if(proc->osemaphore[i])
       np->osemaphore[i] = semdup(proc->osemaphore[i]);
+  }
+  for(i = 0; i < MAXMAPPEDFILES; i++){
+    if(proc->ommap[i].pfile){
+      np->ommap[i].pfile = proc->ommap[i].pfile;
+      np->ommap[i].va = proc->ommap[i].va;
+      np->ommap[i].sz = proc->ommap[i].sz;
+    }
+  }
+
 
   np->cwd = idup(proc->cwd);
 
@@ -262,7 +271,7 @@ void
 exit(void)
 {
   struct proc *p;
-  int fd,idsem;
+  int fd, idsem, i;
 
   if(proc == initproc)
     panic("init exiting");
@@ -280,6 +289,13 @@ exit(void)
     if(proc->osemaphore[idsem]){
       semclose(proc->osemaphore[idsem]);
       proc->osemaphore[idsem] = 0;
+    }
+  }
+  for(i = 0; i < MAXMAPPEDFILES; i++){
+    if(proc->ommap[i].pfile){
+      proc->ommap[i].pfile = 0;
+      proc->ommap[i].va = 0;
+      proc->ommap[i].sz = 0;
     }
   }
 

@@ -3,12 +3,12 @@
 // http://developer.intel.com/design/pentium/datashts/24201606.pdf
 
 #include "types.h"
+#include "mmu.h"
 #include "defs.h"
 #include "param.h"
 #include "memlayout.h"
 #include "mp.h"
 #include "x86.h"
-#include "mmu.h"
 #include "mmap.h"
 #include "proc.h"
 

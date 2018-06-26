@@ -90,7 +90,8 @@ void            begin_op();
 void            end_op();
 
 //mmap.c
-int             mmap(int,int,char **);
+int             mmap(int,char **);
+int             munmap(char *);
 
 // mp.c
 extern int      ismp;
@@ -196,7 +197,7 @@ int             copyout(pde_t*, uint, void*, uint);
 void            clearpteu(pde_t *pgdir, char *uva);
 int             allocuvm2(pde_t *pgdir, uint, uint );
 int             unmappages(pde_t *, void *, uint );
-
+pte_t*          pgflags(pde_t *, const void *,uint);
 
 // number of elements in fixed-size array
 #define NELEM(x) (sizeof(x)/sizeof((x)[0]))

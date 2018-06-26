@@ -1,8 +1,8 @@
 #include "types.h"
+#include "mmu.h"
 #include "defs.h"
 #include "param.h"
 #include "memlayout.h"
-#include "mmu.h"
 #include "mmap.h"
 #include "proc.h"
 #include "x86.h"
@@ -38,13 +38,13 @@ mmapin(uint cr2)
 {
   int index;
 
-  for(index=0;index<MAXMAPPEDFILES;index++){
+  for(index = 0; index < MAXMAPPEDFILES; index++){
     int va;
     int sz;
     va = proc->ommap[index].va;
     sz = proc->ommap[index].sz;
 
-    if(cr2>=va && cr2<va+sz)
+    if(proc->ommap[index].pfile != 0 && cr2 >= va && cr2 < (va + sz))
       return index;
   }
   return -1;

@@ -1,10 +1,10 @@
 #include "types.h"
 #include "x86.h"
+#include "mmu.h"
 #include "defs.h"
 #include "date.h"
 #include "param.h"
 #include "memlayout.h"
-#include "mmu.h"
 #include "mmap.h"
 #include "proc.h"
 
@@ -158,18 +158,23 @@ int
 sys_mmap(void)
 {                                                     //(2,&addr,sizeof(addr))<0
   int fd;
-  int mode;
   int addr;
 
-  if(argint(0, &fd)<0 || argint(1, &mode)<0 ||argint(2,&addr)<0){ //PREGUNTAR
+  if(argint(0, &fd)<0 || argint(1,&addr)<0){ //PREGUNTAR
     return -1;
   }
   //cprintf("%x",addr);
-  return mmap(fd,mode,(char**)addr);
+  return mmap(fd,(char**)addr);
 }
 
 int
 sys_munmap(void)
 {                                                     //(2,&addr,sizeof(addr))<0
-  return 0;
+  int addr;
+
+  if(argint(0,&addr)<0){ //PREGUNTAR
+    return -1;
+  }
+
+  return munmap((char*)addr);
 }

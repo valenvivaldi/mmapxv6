@@ -3,6 +3,7 @@
 // See also picirq.c.
 
 #include "types.h"
+#include "mmu.h"
 #include "defs.h"
 #include "traps.h"
 
@@ -13,7 +14,7 @@
 #define REG_TABLE  0x10  // Redirection table base
 
 // The redirection table starts at REG_TABLE and uses
-// two registers to configure each interrupt.  
+// two registers to configure each interrupt.
 // The first (low) register in a pair contains configuration bits.
 // The second (high) register contains a bitmask telling which
 // CPUs can serve that interrupt.

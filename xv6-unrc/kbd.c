@@ -1,5 +1,6 @@
 #include "types.h"
 #include "x86.h"
+#include "mmu.h"
 #include "defs.h"
 #include "kbd.h"
 

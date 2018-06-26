@@ -5,10 +5,10 @@
 //
 
 #include "types.h"
+#include "mmu.h"
 #include "defs.h"
 #include "param.h"
 #include "stat.h"
-#include "mmu.h"
 #include "mmap.h"
 #include "proc.h"
 #include "fs.h"

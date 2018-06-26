@@ -30,7 +30,7 @@ int semget(int semid, int initvalue);
 int semfree(int semid);
 int semdown(int semid);
 int semup(int semid);
-int mmap (int, int, char**);
+int mmap (int, char**);
 int munmap(char * addr);
 
 // ulib.c

@@ -3,6 +3,7 @@
 // Output is written to the screen and serial port.
 
 #include "types.h"
+#include "mmu.h"
 #include "defs.h"
 #include "param.h"
 #include "traps.h"
@@ -10,7 +11,6 @@
 #include "fs.h"
 #include "file.h"
 #include "memlayout.h"
-#include "mmu.h"
 #include "mmap.h"
 #include "proc.h"
 #include "x86.h"
