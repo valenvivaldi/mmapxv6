@@ -28,3 +28,4 @@
 #define SYS_semup  27
 #define SYS_seek   28
 #define SYS_mmap   29
+#define SYS_munmap   30

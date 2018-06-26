@@ -17,7 +17,7 @@ mmaptest(void)
   int i;
   char* buff;
   fd=open("README",O_RDWR);
-  mmap(fd,O_RDWR,&buff);
+  mmap(fd,&buff);
   for(i=0;i<10000;i++){
     printf(1,"%c",buff[i] );
   }

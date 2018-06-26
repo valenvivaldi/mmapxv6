@@ -195,6 +195,7 @@ void            switchkvm(void);
 int             copyout(pde_t*, uint, void*, uint);
 void            clearpteu(pde_t *pgdir, char *uva);
 int             allocuvm2(pde_t *pgdir, uint, uint );
+int             unmappages(pde_t *, void *, uint );
 
 
 // number of elements in fixed-size array

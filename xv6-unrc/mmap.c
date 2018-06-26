@@ -21,7 +21,7 @@ mmap(int fd, int mode, char ** addr )
     return -1;
   }
   //buscar espacio libre en ommap
-  for (indexommap=0;indexommap<MAXMAPPEDFILES;indexommap++){
+  for (indexommap=0; indexommap<MAXMAPPEDFILES; indexommap++){
     if(proc->ommap[indexommap].pfile==0){
       break;
     }
@@ -35,7 +35,7 @@ mmap(int fd, int mode, char ** addr )
     proc->ommap[indexommap].sz = fileformap->ip->size;
 
     proc->ommap[indexommap].va=proc->sz;
-    proc->sz =proc->sz+fileformap->ip->size;
+    proc->sz =PGROUNDUP(proc->sz+fileformap->ip->size);
 
     //*adrr = dir de memoria virtual donde empieza el archivo
     *addr =(void *) proc->ommap[indexommap].va;
@@ -54,7 +54,47 @@ mmap(int fd, int mode, char ** addr )
 int
 munmap(char * addr)
 {
+  //ver modo de archivo
+  uint indexommap, baseaddr, size;
+  struct mmap filemap;
+
+
  //buscar  ommap que archivo mapeado usa esa direccion de mem
- //verificar paginas dirty,y guardar cada pagina dirty en el archivo
-return 0;
+ for(indexommap=0; indexommap<MAXMAPPEDFILES; indexommap++){
+   //ver que la direccion virtual no sea 0 o puntero a file null
+   filemap = proc->ommap[indexommap];
+   if(filemap.va!=0 && filemap.pfile){
+    baseaddr=filemap.va;
+    size=filemap.va+filemap.sz;
+    if((uint) addr==sa)
+      break;
+   }
+ }
+ if(indexommap<MAXMAPPEDFILES){
+   uint offset;
+   pte_t* pte;
+
+
+
+
+   for(offset=addr; offset  < size; offset += PGSIZE){
+    if(pte = pgflags(proc->pgdir, offset, PTE_D)){
+      if((filemap.file)->writeable){
+        uint pa = PTE_ADDR(*pte);
+        fileseek(filemap.pfile, offset);
+        filewrite(filemap.pfile, (char*)p2v(pa), PGSIZE);
+      }
+    }
+   }
+   unmappages(proc->pgdir, baseaddr, size);
+
+   //marcar como no usadas
+   filemap.pfile=0;
+   filemap.va=0;
+
+   return 0;
+
+ }else{
+   return -1;
+ }
 }

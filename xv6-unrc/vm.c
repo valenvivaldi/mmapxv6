@@ -380,6 +380,39 @@ copyout(pde_t *pgdir, uint va, void *p, uint len)
   return 0;
 }
 
+
+
+int
+unmappages(pde_t *pgdir, void *va, uint size)
+{
+  uint oldsz,newsz;
+
+  oldsz= (uint) va+size;
+  newsz=(uint) va;
+
+  newsz=deallocuvm(pgdir,oldsz,newsz);
+
+  if(!newsz)
+    return -1;
+
+  return newsz;
+}
+
+
+
+pte_t*
+pgflags(pde_t *pgdir, const void *va,uint flag)
+{
+  pte_t* pte;
+
+  if((pte=walkpgdir(pgdir,(char*)va,0))!=0){
+    if(*pte & flag)
+      return pte;
+  }
+  return 0;
+}
+
+
 //PAGEBREAK!
 // Blank page.
 //PAGEBREAK!

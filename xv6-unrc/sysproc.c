@@ -167,3 +167,9 @@ sys_mmap(void)
   //cprintf("%x",addr);
   return mmap(fd,mode,(char**)addr);
 }
+
+int
+sys_munmap(void)
+{                                                     //(2,&addr,sizeof(addr))<0
+  return 0;
+}
