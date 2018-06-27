@@ -30,7 +30,7 @@ mmaptest(void)
     printf(1,"%c",buff[i] );
   }
   printf(1,"IMPRIMIO modificado!!!!!!!\n");
-  munmap(buff);
+  //munmap(buff);
   printf(1, "mmaptest ok\n");
 }
 

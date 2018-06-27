@@ -276,7 +276,12 @@ exit(void)
   if(proc == initproc)
     panic("init exiting");
 
-  // Close all open files.
+  // Close all open mmaps and later closes all open files.
+  for(i = 0; i < MAXMAPPEDFILES; i++){
+    if(proc->ommap[i].pfile){
+      munmap((char*) proc->ommap[i].va);
+    }
+  }
   for(fd = 0; fd < NOFILE; fd++){
     if(proc->ofile[fd]){
       fileclose(proc->ofile[fd]);
@@ -289,13 +294,6 @@ exit(void)
     if(proc->osemaphore[idsem]){
       semclose(proc->osemaphore[idsem]);
       proc->osemaphore[idsem] = 0;
-    }
-  }
-  for(i = 0; i < MAXMAPPEDFILES; i++){
-    if(proc->ommap[i].pfile){
-      proc->ommap[i].pfile = 0;
-      proc->ommap[i].va = 0;
-      proc->ommap[i].sz = 0;
     }
   }
 
