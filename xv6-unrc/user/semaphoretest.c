@@ -1,3 +1,7 @@
+// test that shows the problem of the consumer producer.
+// -1: consumption +1: production.
+// the results will be written in a file called "register" and also on the screen.
+
 #include "param.h"
 #include "types.h"
 #include "stat.h"
@@ -8,12 +12,14 @@
 #include "traps.h"
 #include "memlayout.h"
 
-
-#define S  100 //size of buffer
-#define AMOUNTOFPRODUCERS 1
-#define AMOUNTOFCONSUMERS 1
-#define AMOUNTOFCYCLES 100  // amount of productions of the producers.
-
+//  parameters that modify the behavior of the test (for example, quantity of producers and consumers).
+#define S  10  //size of buffer
+#define AMOUNTOFPRODUCERS 5  // number of producers.
+#define AMOUNTOFCONSUMERS 2  // number of consumers.
+#define AMOUNTOFCYCLESPROD 10  // amount of productions per producer.
+#define AMOUNTOFCYCLESCONS 25  // number of consumptions per consumer.
+#define TIMEPRODUCE 15  // time to produce a item.
+#define TIMECONSUME 30  // time to consume a item.
 
 int fd=0;
 int semfull;
@@ -32,6 +38,7 @@ enqueue()
 {
   semdown(semb);
   write(fd, "+1", sizeof("+1"));
+  printf(1,"+1");
   semup(semb);
 }
 
@@ -40,6 +47,7 @@ unqueue()
 {
   semdown(semb);
   write(fd, "-1", sizeof("-1"));
+  printf(1,"-1");
   semup(semb);
   return 0;
 
@@ -48,11 +56,14 @@ unqueue()
 void
 cons()
 {
-  for(;;) {
+  int i;
+  for(i=0;i<AMOUNTOFCYCLESCONS;i++) {
+    sleep(TIMECONSUME);
     semdown(semempty);
     unqueue();
     semup(semfull);
   }
+  exit();
 
 }
 
@@ -60,11 +71,13 @@ void
 prod()
 {
   int i;
-    for(i=0;i<AMOUNTOFCYCLES;i++) {
-      semdown(semfull);
-      enqueue();
-      semup(semempty);
-    }
+  for(i=0;i<AMOUNTOFCYCLESPROD;i++) {
+    sleep(TIMEPRODUCE);
+    semdown(semfull);
+    enqueue();
+    semup(semempty);
+  }
+  exit();
 }
 
 void
@@ -74,6 +87,18 @@ semtest(void)
   int i,j;
   int pid=1;
   fd=open("register", O_CREATE|O_RDWR);
+
+  for(i=0;i<AMOUNTOFCONSUMERS;i++){
+    pid=fork();
+    if(pid==0){
+      printf(1,"CONSUMIDOR\n" );
+      break;
+    }
+
+  }
+  if(pid==0){
+    cons();
+  }
 
   for(i=0;i<AMOUNTOFPRODUCERS;i++){
 
@@ -89,19 +114,8 @@ semtest(void)
     prod();
   }
 
-  for(i=0;i<AMOUNTOFCONSUMERS;i++){
-    pid=fork();
-    if(pid==0){
-      printf(1,"CONSUMIDOR\n" );
-      break;
-    }
-
-  }
-  if(pid==0){
-    cons();
-  }
   if(pid!=0){
-    for(j=0;j<AMOUNTOFPRODUCERS+AMOUNTOFPRODUCERS;j++){
+    for(j=0;j<(AMOUNTOFPRODUCERS+AMOUNTOFPRODUCERS);j++){
       wait();
     }
   }
