@@ -9,25 +9,29 @@
 #include "memlayout.h"
 #include "proc.h"
 
+
+//This function takes a file opened by the process and maps it into memory.
+// The function returns the memory address where the file starts
+
 int
 mmap(int fd, char ** addr )
 {
   int indexommap;
   struct file* fileformap;
-//buscar en ofile del archivo el archivo a mapear
+//Find the open file that you want to map in memory
   if(fd >= 0 && fd < NOFILE && proc->ofile[fd] != 0){
     fileformap = proc->ofile[fd];
   }else{
     return -1;
   }
-  //buscar espacio libre en ommap
+  //search for a place available in the mapping of mapped files (ommap) of the process
   for (indexommap = 0; indexommap < MAXMAPPEDFILES; indexommap++){
     if(proc->ommap[indexommap].pfile == 0){
       break;
     }
   }
 
-  //guardar estructura
+  //Save the mmap data in the structure
   if(indexommap < MAXMAPPEDFILES){
 
     proc->ommap[indexommap].pfile = fileformap;
@@ -36,7 +40,7 @@ mmap(int fd, char ** addr )
     proc->ommap[indexommap].va = proc->sz;
     proc->sz = PGROUNDUP(proc->sz + fileformap->ip->size);
 
-    //*adrr = dir de memoria virtual donde empieza el archivo
+    //*adrr = memory address where the mapped file begins
     *addr = (void *) proc->ommap[indexommap].va;
 
     return 0;
@@ -47,17 +51,19 @@ mmap(int fd, char ** addr )
 
 }
 
+//receives a memory address and unmaps the file that has been mapped to that virtual address.
+//if the file was modified and the mmap had write permission,
+// then the modified pages on the disk file are rewritten
 int
 munmap(char * addr)
 {
-  //ver modo de archivo
+
   uint indexommap, baseaddr, size;
   struct mmap* filemap;
 
 
- //buscar  ommap que archivo mapeado usa esa direccion de mem
+ //it is verified that the pertenesca address to an open mmap
  for(indexommap = 0; indexommap < MAXMAPPEDFILES; indexommap++){
-   //ver que la direccion virtual no sea 0 o puntero a file null
    filemap = &proc->ommap[indexommap];
    if(filemap->va != 0 && filemap->pfile){
      baseaddr = filemap->va;
@@ -72,7 +78,7 @@ munmap(char * addr)
 
 
 
-
+   // for each modified pages, that page is written on the corresponding position on the disk
    for(offset =(uint) addr; offset  < size; offset += PGSIZE){
     pte = pgflags(proc->pgdir,(char *) offset, PTE_D);
     if(pte){
@@ -83,9 +89,10 @@ munmap(char * addr)
       }
     }
    }
+   //all the pages of memory are unmapped
    unmappages(proc->pgdir, (char*)baseaddr, size);
 
-   //marcar como no usadas
+   //the space of the mmaps array is marked as unused (pfile = 0)
    filemap->pfile = 0;
    filemap->va = 0;
 

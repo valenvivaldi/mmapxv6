@@ -8,7 +8,9 @@
 #include "traps.h"
 #include "memlayout.h"
 
-
+// this function makes a mmap on the README, reads the first characters,
+// then writes x on those characters and prints the mmap again. finally it does
+// mmap so that the changes are saved in the file.
 
 void
 mmaptest(void)
@@ -33,6 +35,11 @@ mmaptest(void)
   munmap(buff);
   printf(1, "mmaptest ok\n");
 }
+
+//this function is similar to the previous one, except that a parent process
+//starts the mmap and the son (which inherits the mmap) is
+//the one that makes the modifications
+
 
 void
 mmaptest2(void)
@@ -66,7 +73,7 @@ mmaptest2(void)
 int
 main(void)
 {
-  //mmaptest();
+  mmaptest(); // this test function
   mmaptest2();
   exit();
 }
