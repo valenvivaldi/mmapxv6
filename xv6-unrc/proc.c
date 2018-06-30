@@ -241,6 +241,8 @@ fork(void)
     if(proc->osemaphore[i])
       np->osemaphore[i] = semdup(proc->osemaphore[i]);
   }
+
+  // Children processes inherit the mappings.
   for(i = 0; i < MAXMAPPEDFILES; i++){
     if(proc->ommap[i].pfile){
       np->ommap[i].pfile = proc->ommap[i].pfile;
@@ -282,6 +284,7 @@ exit(void)
       munmap((char*) proc->ommap[i].va);
     }
   }
+
   for(fd = 0; fd < NOFILE; fd++){
     if(proc->ofile[fd]){
       fileclose(proc->ofile[fd]);

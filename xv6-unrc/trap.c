@@ -33,6 +33,10 @@ idtinit(void)
   lidt(idt, sizeof(idt));
 }
 
+
+// Determines if the address where the page fault occurred belongs 
+// to the address of a file mapped by the process.
+// Retuns the index in the array of this mapped file or -1 If it could not find it.
 int
 mmapin(uint cr2)
 {
@@ -41,6 +45,7 @@ mmapin(uint cr2)
   for(index = 0; index < MAXMAPPEDFILES; index++){
     int va;
     int sz;
+    
     va = proc->ommap[index].va;
     sz = proc->ommap[index].sz;
 
@@ -49,7 +54,6 @@ mmapin(uint cr2)
   }
   return -1;
 }
-
 
 
 //PAGEBREAK: 41
@@ -106,7 +110,6 @@ trap(struct trapframe *tf)
       uint basepgaddr;
       int mmapid;
 
-
       //  Verify if you wanted to access a correct address but not assigned.
       //  if appropriate, assign one more page to the stack.
       if(cr2 >= proc->sstack && cr2 < proc->sstack + MAXSTACKPAGES * PGSIZE){
@@ -120,6 +123,7 @@ trap(struct trapframe *tf)
       if ( (mmapid = mmapin(cr2)) >= 0 ) {
         int offset;
         cprintf("\nSE QUIERE LEER UNA PAGINA DEL ARCHIVO NO ALOCADA!\n");
+
         // in ashared memory region
         basepgaddr = PGROUNDDOWN(cr2);
         if(allocuvm(proc->pgdir, basepgaddr, basepgaddr + PGSIZE) == 0)

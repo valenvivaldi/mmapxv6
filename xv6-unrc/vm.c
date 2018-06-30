@@ -381,16 +381,17 @@ copyout(pde_t *pgdir, uint va, void *p, uint len)
 }
 
 
-
+// It unmaps the range [va, va+size] of logical addresses of a process,
+// releasing physical pages associated with that range.
 int
 unmappages(pde_t *pgdir, void *va, uint size)
 {
-  uint oldsz,newsz;
+  uint oldsz, newsz;
 
-  oldsz= (uint) va+size;
-  newsz=(uint) va;
+  oldsz = (uint) va + size;
+  newsz = (uint) va;
 
-  newsz=deallocuvm(pgdir,oldsz,newsz);
+  newsz = deallocuvm(pgdir, oldsz, newsz);
 
   if(!newsz)
     return -1;
@@ -399,13 +400,13 @@ unmappages(pde_t *pgdir, void *va, uint size)
 }
 
 
-
+//??
 pte_t*
-pgflags(pde_t *pgdir, const void *va,uint flag)
+pgflags(pde_t *pgdir, const void *va, uint flag)
 {
   pte_t* pte;
 
-  if((pte=walkpgdir(pgdir,(char*)va,0))!=0){
+  if((pte = walkpgdir(pgdir, (char*)va, 0))!=0){
     if(*pte & flag)
       return pte;
   }

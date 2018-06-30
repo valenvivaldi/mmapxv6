@@ -10,12 +10,12 @@
 #define MAXOPBLOCKS  10  // max # of blocks any FS op writes
 #define LOGSIZE      (MAXOPBLOCKS*3)  // max data sectors in on-disk log
 #define NBUF         (MAXOPBLOCKS*3)  // size of disk block cache
-#define QUANTUM      5  // maximum number of ticks per process
-#define MLFLEVELS    4  // number of levels in the MLF structure
+#define QUANTUM       5  // maximum number of ticks per process
+#define MLFLEVELS     4  // number of levels in the MLF structure
 #define TICKSFORAGE  10  // amount of ticks to increase the age of the process
-#define AGEFORAGINGS 5  // age that the processes must reach to update the priority.
-#define MLFMAXPRIORITY  0  // level with the highest priority in the MLF structure.
-#define MAXSEM 64  // maximum number of semaphores in the system.
-#define MAXPROCSEM 5  // maximum number of semaphores per process.
+#define AGEFORAGINGS  5  // age that the processes must reach to update the priority.
+#define MLFMAXPRIORITY 0 // level with the highest priority in the MLF structure.
+#define MAXSEM       64  // maximum number of semaphores in the system.
+#define MAXPROCSEM    5  // maximum number of semaphores per process.
 #define MAXSTACKPAGES 8  // maximum number of stack pages per process.
-#define MAXMAPPEDFILES 5
+#define MAXMAPPEDFILES 5 // maximum number of mapped files per process.

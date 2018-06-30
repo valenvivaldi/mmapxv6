@@ -67,12 +67,12 @@ struct proc {
   struct inode *cwd;           // Current directory
   char name[16];               // Process name (debugging)
   ushort ticks;                // Number of ticks
-  ushort priority;
-  struct proc* next;
-  ushort age;
-  struct semaphore *osemaphore[MAXPROCSEM]; // Open semaphore
-  uint sstack;    //  keeps the top of the last page of the stack (may be unassigned).
-  struct mmap ommap[MAXMAPPEDFILES];
+  ushort priority;             // Priority level of the process
+  struct proc* next;           // Pointer to a next process in the same level of priority
+  ushort age;                  // Time in the MLF without having been planned 
+  struct semaphore *osemaphore[MAXPROCSEM]; // Open semaphores
+  uint sstack;                 //  keeps the top of the last page of the stack (may be unassigned).
+  struct mmap ommap[MAXMAPPEDFILES];  // Files mapped in memory
 };
 
 // Process memory is laid out contiguously, low addresses first:

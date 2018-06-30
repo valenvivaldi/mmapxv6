@@ -38,7 +38,7 @@ enqueue()
 {
   semdown(semb);
   write(fd, "+1", sizeof("+1"));
-  printf(1,"+1");
+  printf(1, "+1");
   semup(semb);
 }
 
@@ -47,7 +47,7 @@ unqueue()
 {
   semdown(semb);
   write(fd, "-1", sizeof("-1"));
-  printf(1,"-1");
+  printf(1, "-1");
   semup(semb);
   return 0;
 
@@ -57,7 +57,7 @@ void
 cons()
 {
   int i;
-  for(i=0;i<AMOUNTOFCYCLESCONS;i++) {
+  for(i=0; i < AMOUNTOFCYCLESCONS; i++) {
     sleep(TIMECONSUME);
     semdown(semempty);
     unqueue();
@@ -71,7 +71,7 @@ void
 prod()
 {
   int i;
-  for(i=0;i<AMOUNTOFCYCLESPROD;i++) {
+  for(i=0; i < AMOUNTOFCYCLESPROD; i++) {
     sleep(TIMEPRODUCE);
     semdown(semfull);
     enqueue();
@@ -84,38 +84,38 @@ void
 semtest(void)
 {
 
-  int i,j;
-  int pid=1;
-  fd=open("register", O_CREATE|O_RDWR);
+  int i, j;
+  int pid = 1;
+  fd = open("register", O_CREATE|O_RDWR);
 
-  for(i=0;i<AMOUNTOFCONSUMERS;i++){
-    pid=fork();
-    if(pid==0){
-      printf(1,"CONSUMIDOR\n" );
+  for(i=0; i < AMOUNTOFCONSUMERS; i++){
+    pid = fork();
+    if(pid == 0){
+      printf(1, "CONSUMIDOR\n" );
       break;
     }
 
   }
-  if(pid==0){
+  if(pid == 0){
     cons();
   }
 
-  for(i=0;i<AMOUNTOFPRODUCERS;i++){
+  for(i=0; i < AMOUNTOFPRODUCERS; i++){
 
     pid=fork();
 
-    if(pid==0){
-      printf(1,"PRODUCTOR\n" );
+    if(pid == 0){
+      printf(1, "PRODUCTOR\n" );
       break;
     }
 
   }
-  if(pid==0){
+  if(pid == 0){
     prod();
   }
 
-  if(pid!=0){
-    for(j=0;j<(AMOUNTOFPRODUCERS+AMOUNTOFPRODUCERS);j++){
+  if(pid != 0){
+    for(j=0; j < (AMOUNTOFPRODUCERS + AMOUNTOFPRODUCERS); j++){
       wait();
     }
   }
@@ -124,14 +124,14 @@ semtest(void)
 int
 main(void)
 {
-  semempty=semget(-1,0);
-  printf(1,"despues de semget semempty\n" );
+  semempty = semget(-1, 0);
+  printf(1,"despues de semget semempty\n");
 
-  semfull=semget(-1,S);
-  printf(1,"despues de semget semfull\n" );
+  semfull = semget(-1, S);
+  printf(1,"despues de semget semfull\n");
 
-  semb=semget(-1,1);
-  printf(1,"despues de semget semb\n" );
+  semb = semget(-1, 1);
+  printf(1,"despues de semget semb\n");
 
   semtest();
   exit();
