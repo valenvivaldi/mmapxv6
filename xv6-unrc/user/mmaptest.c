@@ -77,7 +77,9 @@ mmaptest2(void)
 int
 main(void)
 {
+  printf(1, "\n----------------Maptest1----------------\n");
   mmaptest(); // this test function
+  printf(1, "\n----------------Maptest2----------------\n");
   mmaptest2();
   exit();
 }
