@@ -155,17 +155,14 @@ filewrite(struct file *f, char *addr, int n)
   panic("filewrite");
 }
 
-
+// Change the read/write cursor of a file f in the position newoffset.
 int
 fileseek(struct file *f, uint newoffset)
 {
-  if(f->readable == 0){
-    return -1;
-  }
-  if(f->writable == 0)
-    return -1;
+
   if(newoffset<0)
     return -1;
+  
   if(newoffset > f->ip->size){
       f->off = f->ip->size;
       return 0;

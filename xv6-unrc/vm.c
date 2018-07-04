@@ -400,7 +400,8 @@ unmappages(pde_t *pgdir, void *va, uint size)
 }
 
 
-//??
+// Determines if the address of the PTE in page table pgdir
+// that corresponds to virtual address va has the flag given as a parameter on.
 pte_t*
 pgflags(pde_t *pgdir, const void *va, uint flag)
 {
