@@ -442,7 +442,6 @@ sys_pipe(void)
   return 0;
 }
 
-
 int
 sys_seek(void)
 {
@@ -452,4 +451,29 @@ sys_seek(void)
   if(argfd(0, 0, &f) < 0 || argint(1, &n) < 0 )
     return -1;
   return fileseek(f, n);
+}
+
+int
+sys_mmap(void)
+{                                                 
+  int fd;
+  int addr;
+
+  if(argint(0, &fd)<0 || argint(1,&addr)<0){ 
+    return -1;
+  }
+  
+  return mmap(fd,(char**)addr);
+}
+
+int
+sys_munmap(void)
+{                                                     
+  int addr;
+
+  if(argint(0,&addr)<0){ 
+    return -1;
+  }
+
+  return munmap((char*)addr);
 }

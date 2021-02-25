@@ -153,28 +153,3 @@ sys_semup(void)
     return -1;
   return semup(id);
 }
-
-int
-sys_mmap(void)
-{                                                     //(2,&addr,sizeof(addr))<0
-  int fd;
-  int addr;
-
-  if(argint(0, &fd)<0 || argint(1,&addr)<0){ //PREGUNTAR
-    return -1;
-  }
-  //cprintf("%x",addr);
-  return mmap(fd,(char**)addr);
-}
-
-int
-sys_munmap(void)
-{                                                     //(2,&addr,sizeof(addr))<0
-  int addr;
-
-  if(argint(0,&addr)<0){ //PREGUNTAR
-    return -1;
-  }
-
-  return munmap((char*)addr);
-}
